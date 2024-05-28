@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комментарии</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .comment-form input, .comment-form textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .comment-form button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .comment {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .comment .username {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Оставьте свой комментарий</h1>
+        <div class="comment-form">
+            <input type="text" id="username" placeholder="Ваше имя">
+            <textarea id="comment" placeholder="Ваш комментарий"></textarea>
+            <button onclick="postComment()">Отправить</button>
+        </div>
+        <div id="comments"></div>
+    </div>
+
+    <script>
+        function postComment() {
+            var username = document.getElementById('username').value.trim();
+            var comment = document.getElementById('comment').value.trim();
+
+            if(username && comment) {
+                var commentsSection = document.getElementById('comments');
+                var newComment = document.createElement('div');
+                newComment.classList.add('comment');
+                newComment.innerHTML = '<span class="username">' + username + '</span>: ' + comment;
+                commentsSection.appendChild(newComment);
+
+                // Очистка полей ввода
+                document.getElementById('username').value = '';
+                document.getElementById('comment').value = '';
+            } else {
+                alert('Пожалуйста, заполните все поля!');
+            }
+        }
+    </script>
+</body>
+</html>
+
